@@ -1,12 +1,500 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh"
-          content="0; url=https://docs.google.com/forms/d/e/1FAIpQLSeAStrTDjC8kqdH6P1oDmxgh1-rELWClnlOU_OWBuvUnjoBHA/viewform?usp=header">
-    <title>Redirecting...</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotaract Club of SSIET — Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #EDEDE7;
+    --dot: #D7D7CF;
+    --ink: #17171A;
+    --orange: #E5572B;
+    --blue: #2E4FE0;
+    --grey: #6B6B64;
+    --line: #C9C9C0;
+    --paper: #FBFBF8;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html, body{
+    margin:0;
+    min-height:100%;
+    background-color: var(--cream);
+    background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px);
+    background-size: 22px 22px;
+    font-family:'Inter', sans-serif;
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    padding: 0 20px;
+    position:relative;
+  }
+
+  .page{
+    width:100%;
+    max-width: 1040px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+  }
+
+  .nav{
+    width:100%;
+    max-width: 620px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    opacity:0;
+    animation: rise 0.6s ease forwards;
+  }
+
+  .brand{ display:flex; align-items:center; gap:12px; }
+
+  .mark{
+    width:34px; height:34px;
+    border-radius:9px;
+    background: var(--ink);
+    color:#fff;
+    font-family:'Archivo Black', sans-serif;
+    font-size:16px;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .brand-text .name{
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.02em;
+  }
+  .brand-text .tag{
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    color: var(--blue);
+  }
+
+  .discovery{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--ink);
+    border-radius:999px;
+    padding:6px 14px 6px 8px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.06em;
+  }
+
+  .dots{ display:flex; gap:4px; }
+  .dots span{
+    width:6px; height:6px;
+    border-radius:50%;
+    background: var(--line);
+    transition: background 0.3s ease;
+  }
+  .dots span.on{ background:#2FAE4E; }
+
+  main{
+    width:100%;
+    max-width: 560px;
+    padding: 56px 0 40px;
+    position:relative;
+    z-index:2;
+  }
+
+  .badge{
+    display:inline-block;
+    background: var(--blue);
+    color:#fff;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    padding: 7px 14px;
+    border-radius:999px;
+    margin-bottom: 26px;
+    opacity:0;
+    animation: rise 0.6s ease forwards 0.15s;
+  }
+
+  h1{
+    font-family:'Archivo Black', sans-serif;
+    font-weight:400;
+    font-size: clamp(38px, 8vw, 58px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    text-transform:uppercase;
+    opacity:0;
+    animation: rise 0.6s ease forwards 0.28s;
+  }
+
+  h1 .accent{ color: var(--orange); }
+
+  p.sub{
+    font-size:16px;
+    line-height:1.6;
+    color:#3A3A36;
+    max-width: 48ch;
+    margin: 0 0 8px;
+    opacity:0;
+    animation: rise 0.6s ease forwards 0.4s;
+  }
+
+  .status-line{
+    font-size:13px;
+    color: var(--grey);
+    font-weight:600;
+    margin: 6px 0 30px;
+    opacity:0;
+    animation: rise 0.6s ease forwards 0.5s;
+  }
+
+  .status-line span{ color: var(--ink); }
+
+  .cta{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background: var(--ink);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14.5px;
+    letter-spacing:0.01em;
+    padding: 15px 26px;
+    border-radius:999px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    opacity:0;
+    animation: rise 0.6s ease forwards 0.62s;
+  }
+
+  .cta:hover{ transform: translateY(-1px); background:#000; }
+
+  .cta .arrow{ display:inline-block; transition: transform 0.2s ease; }
+  .cta:hover .arrow{ transform: translateY(2px); }
+
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(12px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  /* Memory polaroids scattered in the empty space */
+  .memories{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .polaroid{
+    position:absolute;
+    width:150px;
+    background: var(--paper);
+    border-radius:4px;
+    padding: 10px 10px 16px;
+    box-shadow: 0 10px 24px rgba(23,23,26,0.14);
+    opacity:0;
+    animation: appear 0.7s ease forwards var(--delay, 0s), float var(--float-dur, 6s) ease-in-out infinite var(--delay, 0s);
+  }
+
+  @keyframes appear{
+    from{ opacity:0; transform: translateY(16px) rotate(var(--rot, 0deg)) scale(0.94); }
+    to{ opacity:1; transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
+  }
+
+  @keyframes float{
+    0%, 100%{ transform: translateY(0) rotate(var(--rot, 0deg)); }
+    50%{ transform: translateY(-9px) rotate(var(--rot, 0deg)); }
+  }
+
+  .polaroid .photo{
+    width:100%;
+    aspect-ratio: 1 / 1;
+    border-radius:2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:10px;
+  }
+
+  .polaroid .photo svg{ width:56%; height:56%; }
+
+  .polaroid .caption{
+    font-family:'Caveat', cursive;
+    font-size:17px;
+    font-weight:700;
+    color:#2A2A28;
+    text-align:center;
+    line-height:1;
+  }
+
+  .tape{
+    position:absolute;
+    top:-10px; left:50%;
+    width:46px; height:18px;
+    background: rgba(229,87,43,0.55);
+    transform: translateX(-50%) rotate(-3deg);
+    border-radius:2px;
+  }
+
+  .p1{ --rot:-7deg; --delay:0.7s; --float-dur:7s; top:60px; left:-70px; }
+  .p2{ --rot:6deg; --delay:0.95s; --float-dur:6.5s; top:40px; right:-90px; width:170px; }
+  .p3{ --rot:9deg; --delay:1.2s; --float-dur:8s; top:340px; left:-40px; width:130px; }
+  .p4{ --rot:-5deg; --delay:1.4s; --float-dur:7.4s; top:440px; right:-30px; width:140px; }
+  .p5{ --rot:-10deg; --delay:1.6s; --float-dur:6.8s; top:640px; left:60px; width:135px; }
+
+  footer{
+    width:100%;
+    max-width:620px;
+    border-top:1px solid var(--line);
+    padding: 18px 0 26px;
+    margin-top:auto;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    color: var(--grey);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    position:relative;
+    z-index:2;
+  }
+
+  .pin{ color: var(--orange); font-size:13px; }
+
+  @media (max-width: 900px){
+    .p1, .p2, .p3, .p4, .p5{ display:none; }
+    .row-strip{ display:flex; }
+  }
+
+  .row-strip{
+    display:none;
+    gap:14px;
+    overflow-x:auto;
+    padding: 6px 4px 26px;
+    width:100%;
+    max-width:620px;
+  }
+
+  .row-strip .polaroid{
+    position:static;
+    flex: 0 0 120px;
+    animation: appear 0.6s ease forwards var(--delay, 0s);
+  }
+
+  /* Exit transition */
+  .page{
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .page.exiting{
+    opacity:0;
+    transform: scale(0.97);
+  }
+
+  .exit-overlay{
+    position:fixed;
+    inset:0;
+    background: var(--ink);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.65s cubic-bezier(.65,0,.35,1);
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+  }
+
+  .exit-overlay.active{ transform: scaleY(1); }
+
+  .exit-content{
+    text-align:center;
+    opacity:0;
+    transition: opacity 0.35s ease 0.35s;
+  }
+
+  .exit-overlay.active .exit-content{ opacity:1; }
+
+  .exit-mark{
+    width:48px; height:48px;
+    border-radius:12px;
+    background:#fff;
+    color: var(--ink);
+    font-family:'Archivo Black', sans-serif;
+    font-size:22px;
+    display:flex; align-items:center; justify-content:center;
+    margin: 0 auto 16px;
+    animation: pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes pulse{
+    0%, 100%{ transform: scale(1); }
+    50%{ transform: scale(1.1); }
+  }
+
+  .exit-text{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#F4F4F0;
+  }
+</style>
 </head>
 <body>
-    <p>Redirecting to the registration form...</p>
+
+<div class="page">
+  <div class="memories" aria-hidden="true">
+    <div class="polaroid p1">
+      <div class="tape"></div>
+      <div class="photo" style="background:#DCE6FF;">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 8c-6 0-11 4.5-11 11 0 8 11 21 11 21s11-13 11-21c0-6.5-5-11-11-11z" stroke="#2E4FE0" stroke-width="2.4" fill="none"/><circle cx="24" cy="19" r="4" fill="#2E4FE0"/></svg>
+      </div>
+      <div class="caption">Blood Camp '25</div>
+    </div>
+
+    <div class="polaroid p2">
+      <div class="tape"></div>
+      <div class="photo" style="background:#FCE2D3;">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 40V20M24 20c0-6-5-11-12-11 0 7 5 12 12 12M24 20c0-6 5-11 12-11 0 7-5 12-12 12" stroke="#E5572B" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="caption">Tree Plantation</div>
+    </div>
+
+    <div class="polaroid p3">
+      <div class="tape"></div>
+      <div class="photo" style="background:#E4E1FF;">
+        <svg viewBox="0 0 48 48" fill="none"><circle cx="16" cy="18" r="5" stroke="#2E4FE0" stroke-width="2.4"/><circle cx="32" cy="18" r="5" stroke="#2E4FE0" stroke-width="2.4"/><path d="M6 38c1-6 5-10 10-10s9 4 10 10M22 38c1-6 5-10 10-10s9 4 10 10" stroke="#2E4FE0" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </div>
+      <div class="caption">Team Meet-up</div>
+    </div>
+
+    <div class="polaroid p4">
+      <div class="tape"></div>
+      <div class="photo" style="background:#FCE9C6;">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M14 22l6 6 14-14" stroke="#E5572B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="17" stroke="#E5572B" stroke-width="2.4" fill="none"/></svg>
+      </div>
+      <div class="caption">Installation Day</div>
+    </div>
+
+    <div class="polaroid p5">
+      <div class="tape"></div>
+      <div class="photo" style="background:#DCEFE0;">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M9 34V16l15-8 15 8v18" stroke="#2FAE4E" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M18 34v-9h12v9" stroke="#2FAE4E" stroke-width="2.4" fill="none"/></svg>
+      </div>
+      <div class="caption">Outreach Visit</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="brand">
+      <div class="mark">R</div>
+      <div class="brand-text">
+        <div class="name">ROTARACT · SSIET</div>
+        <div class="tag">JOIN. SERVE. LEAD.</div>
+      </div>
+    </div>
+    <div class="discovery">
+      REDIRECTING
+      <div class="dots" id="dots">
+        <span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="badge">REGISTRATION · OPEN NOW</div>
+    <h1>You're about to<br>join <span class="accent">rotaract</span><br>ssiet.</h1>
+    <p class="sub">One short form stands between you and a year of projects, leadership, and a club that actually gets things done. Taking you there now.</p>
+    <div class="status-line">Opening the form in <span id="count">4</span>…</div>
+    <a class="cta" id="manualLink" href="https://docs.google.com/forms/d/e/1FAIpQLSeAStrTDjC8kqdH6P1oDmxgh1-rELWClnlOU_OWBuvUnjoBHA/viewform?usp=header">
+      Continue to form <span class="arrow">↓</span>
+    </a>
+  </main>
+
+  <div class="row-strip">
+    <div class="polaroid" style="--delay:0.2s;">
+      <div class="tape"></div>
+      <div class="photo" style="background:#DCE6FF;"><svg viewBox="0 0 48 48" fill="none"><path d="M24 8c-6 0-11 4.5-11 11 0 8 11 21 11 21s11-13 11-21c0-6.5-5-11-11-11z" stroke="#2E4FE0" stroke-width="2.4" fill="none"/><circle cx="24" cy="19" r="4" fill="#2E4FE0"/></svg></div>
+      <div class="caption">Blood Camp '25</div>
+    </div>
+    <div class="polaroid" style="--delay:0.3s;">
+      <div class="tape"></div>
+      <div class="photo" style="background:#FCE2D3;"><svg viewBox="0 0 48 48" fill="none"><path d="M24 40V20M24 20c0-6-5-11-12-11 0 7 5 12 12 12M24 20c0-6 5-11 12-11 0 7-5 12-12 12" stroke="#E5572B" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="caption">Tree Plantation</div>
+    </div>
+    <div class="polaroid" style="--delay:0.4s;">
+      <div class="tape"></div>
+      <div class="photo" style="background:#FCE9C6;"><svg viewBox="0 0 48 48" fill="none"><path d="M14 22l6 6 14-14" stroke="#E5572B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="17" stroke="#E5572B" stroke-width="2.4" fill="none"/></svg></div>
+      <div class="caption">Installation Day</div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="pin">📍</span> REDIRECTING FROM SRI SHAKTHI INSTITUTE OF ENGINEERING &amp; TECHNOLOGY, COIMBATORE
+  </footer>
+</div>
+
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-content">
+    <div class="exit-mark">R</div>
+    <div class="exit-text">Opening registration form</div>
+  </div>
+</div>
+
+<script>
+  const url = "https://docs.google.com/forms/d/e/1FAIpQLSeAStrTDjC8kqdH6P1oDmxgh1-rELWClnlOU_OWBuvUnjoBHA/viewform?usp=header";
+  const countEl = document.getElementById('count');
+  const dots = document.querySelectorAll('#dots .d');
+  const pageEl = document.querySelector('.page');
+  const overlayEl = document.getElementById('exitOverlay');
+  const manualLink = document.getElementById('manualLink');
+  let step = 0;
+  let navigated = false;
+  const total = 4;
+
+  function goToForm(){
+    if (navigated) return;
+    navigated = true;
+    pageEl.classList.add('exiting');
+    overlayEl.classList.add('active');
+    setTimeout(() => { window.location.href = url; }, 850);
+  }
+
+  function tick(){
+    if (step < total){
+      dots[step].classList.add('on');
+      step += 1;
+      countEl.textContent = total - step;
+    }
+    if (step >= total){
+      clearInterval(timer);
+      countEl.textContent = '0';
+      goToForm();
+    }
+  }
+
+  const timer = setInterval(tick, 1000);
+
+  manualLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    clearInterval(timer);
+    goToForm();
+  });
+</script>
+
 </body>
 </html>
